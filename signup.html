@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blood Bank Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="assets/styles/signup.css">
+        </head>
+    <body>
+                <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <form action="userinterf.html" onsubmit="signup(event)">
+                    <h1>User Registration</h1>
+                        <br><br><br><!-- ente elupatinu anu 3 br -->
+                    <input type="email" placeholder="Email" id="email" required/>
+                    <input type="password" id="password" name="password" class="inputFields" placeholder="Password" value="" oninput="return passwordValidation(this.value);" required/>
+                    <button type="submit">Login</button>
+                    <p class="changetologin">Are you a registered user? <a href="login.html">Login</a></p>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Join into our community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function passValidation(passwordInput) {
+                var password = document.getElementById("password");
+                var issueArr = [];
+                if (!/^.{7,15}$/.test(passwordInput)) {
+                    alert("Password must be between 7-15 characters.");
+                }
+                if (!/\d/.test(passwordInput)) {
+                    alert("Must contain at least one number.");
+                }
+                if (!/[a-z]/.test(passwordInput)) {
+                    alert("Must contain a lowercase letter.");
+                }
+                if (!/[A-Z]/.test(passwordInput)) {
+                    alert("Must contain an uppercase letter.");
+                }
+                if (issueArr.length > 0) {
+                    password.setCustomValidity(issueArr.join("\n"));
+                    password.style.borderColor = alertRedInput;
+                } else {
+                    password.setCustomValidity("");
+                    password.style.borderColor = defaultInput;
+                }
+            }
+        </script>
+        <!--firebase SDK-->
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <!--firebase cofig data of my app-->
+        
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyCrIWqNU2kdSahiutpp9m1uDJD7v8tRiaw",
+                authDomain: "bankblood-101.firebaseapp.com",
+                projectId: "bankblood-101",
+                storageBucket: "bankblood-101.appspot.com",
+                messagingSenderId: "631408157440",
+                appId: "1:631408157440:web:876eb7502be4e9836949e5",
+                measurementId: "G-2M1V7VXR54"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <!--this is where the code for signup is present-->
+        <script src="./assets/scripts/signup.js"></script>
+        <script>
+            
+        </script>
+    </body>
+</html>

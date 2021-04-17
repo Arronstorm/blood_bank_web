@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blood Bank Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="assets/styles/login.css">
+        <style type="text/css">
+        body,td,th {
+	font-family: Montserrat, sans-serif;
+}
+        </style>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="admininterf.html" onsubmit="adminlogin(event)">
+                    <h1>Admin Login</h1>
+                             <br><br><br><!-- ente elupatinu anu 3 br -->
+                    <input type="email" placeholder="Email" id="adminemail" requierd/>
+                    <input type="password" placeholder="Password" id="adminpass" requires/>
+                    <a href="forgot.html">Forgot your password?</a>
+                    <button type="submit">Login</button>
+                    <p>Not yet registered with us? <a href="signup.html">Sign Up</a></p>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="userinterf.html" onsubmit="userlogin(event)">
+                    <h1>User Login</h1>
+                             <br><br><br><!-- ente elupatinu anu 3 br -->
+                    <input type="email" placeholder="Email" id="useremail" required/>
+                    <input type="password" placeholder="Password" id="userpass" required/>
+                    <a href="forgot.html">Forgot your password?</a>
+                    <button type="submit">Login</button>
+                    <p>Not yet registered with us? <a href="signup.html">Sign Up</a></p>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <!--for user-->
+                    <div class="overlay-panel overlay-left">
+                        <h1>Hello, Friend!</h1>
+                        <p>If you are a User please press this button</p>
+                        <button class="ghost" id="signIn">User Sign In</button>
+                    </div>
+                    <!--for admin-->
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>If your are an Admin Please press this button.</p>
+                        <button class="ghost" id="signUp">Admin Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--this script is for the animation that is used to switch form user to admin-->
+        <script>
+            const signUpButton = document.getElementById('signUp');
+            const signInButton = document.getElementById('signIn');
+            const container = document.getElementById('container');
+            signUpButton.addEventListener('click', () => {
+                container.classList.add("right-panel-active");
+            });
+            signInButton.addEventListener('click', () => {
+                container.classList.remove("right-panel-active");
+            });
+        </script>
+
+        <!--firebase SDK-->
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <!--firebase cofig data of my app-->
+
+        <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCrIWqNU2kdSahiutpp9m1uDJD7v8tRiaw",
+            authDomain: "bankblood-101.firebaseapp.com",
+            projectId: "bankblood-101",
+            storageBucket: "bankblood-101.appspot.com",
+            messagingSenderId: "631408157440",
+            appId: "1:631408157440:web:876eb7502be4e9836949e5",
+            measurementId: "G-2M1V7VXR54"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+        <script src="./assets/scripts/login.js"></script>
+    </body>
+</html>
