@@ -1,82 +1,120 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blood Bank Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blood Bank Login</title>
         <link rel="stylesheet" type="text/css" href="assets/styles/signup.css">
-        </head>
+    </head>
     <body>
-                <div class="container" id="container">
-            <div class="form-container sign-in-container">
-                <form action="userinterf.html" onsubmit="signup(event)">
-                    <h1>User Registration</h1>
-                        <br><br><br><!-- ente elupatinu anu 3 br -->
-                    <input type="email" placeholder="Email" id="email" required/>
-                    <input type="password" id="password" name="password" class="inputFields" placeholder="Password" value="" oninput="return passwordValidation(this.value);" required/>
-                    <button type="submit">Login</button>
-                    <p class="changetologin">Are you a registered user? <a href="login.html">Login</a></p>
-                </form>
-            </div>
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Join into our community.</p>
+        <!--firebase scripts-->
+        <form action="" method="POST" id="registrationform">
+            <div class="container">
+                <div class="form">
+                    <div class="heading">
+                        <h1>Registeration form</h1>
                     </div>
+                    <div class="wrap1">
+                        <div class="fname">
+                            <label>First Name</label>
+                            <input class="firstname" type="text"/ id="usrfirstname">
+                            <span class="focus-input1"></span>
+                        </div>
+                        <div class="lname">
+                            <label>Last Name</label>
+                            <input class="lastname" type="text"/ id="usrlastname">
+                            <span class="focus-input1"></span>
+                        </div>
+                    </div>
+                    <div class="wrap2">
+                        <label>Email</label>
+                        <input class="email" type="email" id="usremail" autocomplete="on">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap2">
+                        <label>Password</label>
+                        <input class="password" type="password" id="usrpassword" autocomplete="new-password">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap2">
+                        <label>Re-enter Password</label>
+                        <input class="repassword" type="password" id="usrrepassword" autocomplete="new-password">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap3">
+                        <div class="sex">
+                            <label>Gender</label>
+                            <select name="Gender" id="usrgender" style="width: 100%;" >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Rather Not Say">Rather Not Say</option>
+                            </select>
+                        </div>
+                        <div class="age">
+                            <label>Date Of Birth</label>
+                            <input class="dob" type="date" id="usrdob">
+                            <span class="focus-input3"></span>
+                        </div>
+                    </div>
+                    <div class="wrap4">
+                        <div class="size">
+                            <label>Weight</label>
+                            <input class="Weight" type="number" id="usrweight" style="width: 100%;">
+                            <span class="focus-input4"></span>
+                        </div>
+                        <div class="blood">
+                            <label>Blood Group</label>
+                            <select name="Blood Group" id="usrblood" style="width: 100%;">
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wrap2">
+                        <label>Address</label>
+                        <input class="address" id="usraddress" type="text">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap5">
+                        <div class="usercity">
+                            <label>City</label>
+                            <input class="city" id="usrcity" type="text">
+                            <span class="focus-input5"></span>
+                        </div>
+                        <div class="userstate">
+                            <label>State</label>
+                            <input class="state" id="usrstate" type="text"/>
+                            <span class="focus-input5"></span>
+                        </div>
+                    </div>
+                    <div class="wrap2">
+                        <label>Phone No</label>
+                        <input class="mobileno" id="usrmobno" type="number">
+                        <span class="focus-input2"></span>
+                    </div>
+                    <div class="wrap2">
+                        <label>Aadhar No</label>
+                        <input class="aadharno" id="usraadhar" type="number">
+                        <span class="focus-input2"></span>
+                    </div>
+
+                    <button type="submit" id="Submit" class="btn" sendMessage()>Register</button>
+                </div>
+                <div class="image">
+                    <img src="assets/images/join our community.jpg" class="img" alt=""/>
                 </div>
             </div>
-        </div>
-        <script>
-            function passValidation(passwordInput) {
-                var password = document.getElementById("password");
-                var issueArr = [];
-                if (!/^.{7,15}$/.test(passwordInput)) {
-                    alert("Password must be between 7-15 characters.");
-                }
-                if (!/\d/.test(passwordInput)) {
-                    alert("Must contain at least one number.");
-                }
-                if (!/[a-z]/.test(passwordInput)) {
-                    alert("Must contain a lowercase letter.");
-                }
-                if (!/[A-Z]/.test(passwordInput)) {
-                    alert("Must contain an uppercase letter.");
-                }
-                if (issueArr.length > 0) {
-                    password.setCustomValidity(issueArr.join("\n"));
-                    password.style.borderColor = alertRedInput;
-                } else {
-                    password.setCustomValidity("");
-                    password.style.borderColor = defaultInput;
-                }
-            }
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>  
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>       
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+        <script src="assets/scripts/signup.js">
         </script>
-        <!--firebase SDK-->
-        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-        <!--firebase cofig data of my app-->
-        
-        <script>
-            var firebaseConfig = {
-                apiKey: "AIzaSyCrIWqNU2kdSahiutpp9m1uDJD7v8tRiaw",
-                authDomain: "bankblood-101.firebaseapp.com",
-                projectId: "bankblood-101",
-                storageBucket: "bankblood-101.appspot.com",
-                messagingSenderId: "631408157440",
-                appId: "1:631408157440:web:876eb7502be4e9836949e5",
-                measurementId: "G-2M1V7VXR54"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-        </script>
-        <!--this is where the code for signup is present-->
-        <script src="./assets/scripts/signup.js"></script>
-        <script>
-            
-        </script>
+        </form>
     </body>
 </html>
