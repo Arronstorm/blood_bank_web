@@ -23,7 +23,7 @@ async function userlogin(e) {
         const result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
         console.log(result)
         alert("Successfully Logged In as user");
-        window.location.href = "userinterf.html";
+        window.location.href = "profile.html";
     }
     catch(err) {
         console.log(err)

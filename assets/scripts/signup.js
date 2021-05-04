@@ -9,13 +9,10 @@ var firebaseConfig = {
     measurementId: "G-2M1V7VXR54",
 };
 
-
    
 firebase.initializeApp(firebaseConfig); 
 
-var database = firebase.database()
-
-let formMessage = firebase.database().ref('users');
+let formMessage = firebase.database().ref("users");
 
 document.getElementById('registrationform').addEventListener('submit', formSubmit);
 
@@ -28,9 +25,11 @@ function formSubmit(e) {
     
 }
 
-function sendMessage(firstname, lastname, usremail, gender, dob, weight, blood, address, city, state, mobile, aadhar) {
-    let newFormMessage = formMessage.push();
-    newFormMessage.set({
+function sendMessage(userid, firstname, lastname, usremail, gender, dob, weight, blood, address, city, state, mobile, aadhar) {
+    firebase
+      .database()
+      .ref("users/" + userid)
+      .set({
         firstname: firstname,
         lastname: lastname,
         usremail: usremail,
@@ -43,7 +42,7 @@ function sendMessage(firstname, lastname, usremail, gender, dob, weight, blood, 
         state: state,
         mobile: mobile,
         aadhar: aadhar,
-    });
+      });
 }
 
 function save(){
@@ -92,9 +91,10 @@ function save(){
             const result = firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
             console.log(result)
             alert("You have successfully registered");
-            firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    sendMessage(fname, lname, ema, sex, dob, size, blood, addrs, cit, stat, mob, aadh);
+                    var uid = user.uid
+                    sendMessage(uid, fname, lname, ema, sex, dob, size, blood, addrs, cit, stat, mob, aadh);
                     window.location.href = "index.html";
                 }
             });
@@ -105,5 +105,3 @@ function save(){
     }
     
 }
-
-
